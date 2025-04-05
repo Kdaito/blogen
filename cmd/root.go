@@ -12,7 +12,7 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:     "blogen",
-	Version: "0.1.0",
+	Version: "0.1.1",
 	Short:   "Fetch Note articles and output them as HTML",
 	Long:    "A CLI tool that fetches articles from the Note API, parses them into HTML format, and saves them as files. You can specify one or more article IDs to retrieve.",
 	// Uncomment the following line if your bare application
