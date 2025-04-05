@@ -7,10 +7,13 @@ import (
 	"log"
 
 	"github.com/Kdaito/blogen/internal/blog"
+	"github.com/Kdaito/blogen/internal/utils"
 	"github.com/spf13/cobra"
 )
 
 var workspace string
+
+const MAX_ID_LENGTH = 50
 
 // indivCmd represents the indiv command
 var indivCmd = &cobra.Command{
@@ -20,6 +23,16 @@ var indivCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, ids []string) {
 		completeItems := make([]string, 0, len(ids))
 		unCompleteItems := make([]string, 0)
+
+		// Check if workspace is provided
+		if err := utils.CheckWorkspaceExist(workspace); err != nil {
+			log.Fatal(err)
+		}
+
+		// Check id length
+		if len(ids) > MAX_ID_LENGTH {
+			log.Fatalf("You can only fetch up to %d articles at a time.", MAX_ID_LENGTH)
+		}
 
 		for _, id := range ids {
 			err := blog.GenerateHtmlIndiv(id, workspace)

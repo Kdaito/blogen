@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"golang.org/x/net/html"
@@ -84,7 +85,7 @@ func formatHtml(htmlContent string) (string, error) {
 }
 
 func generateFile(filename, content, workspace string) error {
-	outputFile := workspace + filename + ".html"
+	outputFile := filepath.Join(workspace, filename+".html")
 
 	return os.WriteFile(outputFile, []byte(content), 0644)
 }
