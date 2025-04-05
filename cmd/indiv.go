@@ -15,8 +15,8 @@ var workspace string
 // indivCmd represents the indiv command
 var indivCmd = &cobra.Command{
 	Use:   "indiv",
-	Short: "idを指定して、個別の記事を取得することができます",
-	Long:  "`indiv`コマンドは、指定したidを持つ個別の記事を取得するためのコマンドです。idは複数指定することができ、各記事の詳細情報を取得することができます",
+	Short: "Fetch articles by specifying their IDs",
+	Long:  "The `indiv` command allows you to fetch one or more articles by specifying their IDs. You can retrieve multiple articles at once by passing multiple IDs.",
 	Run: func(cmd *cobra.Command, ids []string) {
 		completeItems := make([]string, 0, len(ids))
 		unCompleteItems := make([]string, 0)
@@ -40,5 +40,5 @@ var indivCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(indivCmd)
 
-	indivCmd.Flags().StringVarP(&workspace, "workspace", "w", "", "htmlを出力したいディレクトリのパスを指定します")
+	indivCmd.Flags().StringVarP(&workspace, "workspace", "w", "", "Path to the workspace directory for output files")
 }
